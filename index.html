@@ -57,7 +57,7 @@
 		<span>Dodaj stację</span>
 	</div>
 	<div class="form-form" id="add_form">
-		<form action="api/stacje.php" method="POST">
+		<form>
 			<div><label>Adres stacji:</label><input type="text" name="adres" /></div>
 			<div><label>Nazwa stacji:</label><input type="text" name="nazwa_stacji" /></div>
 			<div><label>Sieć stacji:</label>
@@ -82,8 +82,8 @@
 				</div>
 			</div>
 			<div><label>Godziny otwarcia:</label><input type="text" name="godziny_otwarcia" /></div>
-			<div><button> dodaj</button></div>
 		</form>
+		<div><button onclick="dodaj_stacje()"> dodaj</button></div>
 	</div>
 </div>
 <div class="formularz">
@@ -92,35 +92,26 @@
 		<span>Wyszukaj stację</span>
 	</div>
 	<div class="form-form" id="search_form">
-		asdasdasdasd
+		<form>
+			<div><label>Adres stacji:</label><input type="text" name="adres" /></div>
+			<div>
+				<p>Paliwa:</p>
+				<div><input type="checkbox" name="on" value="on"><label>ON</label></div>
+				<div><input type="checkbox" name="95" value="95"><label>95</label></div>
+				<div><input type="checkbox" name="98" value="98"><label>96</label></div>
+				<div><input type="checkbox" name="lpg" value="lpg"><label>LPG</label></div>
+			</div>
+		</form>
+		<div><button onclick="szukaj_stacji()"> dodaj</button></div>
 	</div>
+</div>
+<div id="results">
+	
 </div>
 </div>
 <div id='google_map'></div>
 </main>
-<script type="text/javascript">
-	document.getElementById("main").style.height = window.innerHeight +"px";
-	console.log(window.innerHeight);
-
-	function show(x){
-		if(x=="add"){
-			document.getElementById("add_form").style.display = "block";
-			document.getElementById("search_form").style.display = "none";
-			document.getElementById("add_arrow").style.msTransform = "rotate(180deg)"; 
-  			document.getElementById("add_arrow").style.transform = "rotate(180deg)"; 
-			document.getElementById("search_arrow").style.msTransform = "rotate(0deg)"; 
-  			document.getElementById("search_arrow").style.transform = "rotate(0deg)"; 
-		}
-		else if(x=="search"){
-			document.getElementById("add_form").style.display = "none";
-			document.getElementById("search_form").style.display = "block";
-			document.getElementById("add_arrow").style.msTransform = "rotate(0deg)"; 
-  			document.getElementById("add_arrow").style.transform = "rotate(0deg)"; 
-			document.getElementById("search_arrow").style.msTransform = "rotate(180deg)"; 
-  			document.getElementById("search_arrow").style.transform = "rotate(180deg)"; 
-		}
-		else{}
-	}
+<script type="text/javascript" src="script.js">
 </script>
 </body>
 </html>
