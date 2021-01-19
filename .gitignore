@@ -1,0 +1,11 @@
+**/.idea
+
+api/.mvn/timing.properties
+api/.mvn/wrapper/maven-wrapper.jar
+api/HELP.md
+api/target/
+
+api/*.iws
+api/*.iml
+api/*.ipr
+
