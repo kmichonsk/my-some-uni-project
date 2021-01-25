@@ -23,6 +23,12 @@ window.onload = function() {
 };
 
 function szukaj_stacji(){
+    var miasto=document.getElementsByName("miasto")[1].value;
+    var on=document.getElementsByName("on")[1].checked;
+    var b95=document.getElementsByName("95")[1].checked;
+    var b98=document.getElementsByName("98")[1].checked;
+    var lpg=document.getElementsByName("lpg")[1].checked;
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -84,7 +90,7 @@ function szukaj_stacji(){
 	    }
     }
     };
-    xhttp.open("GET", "./api/stations", true);
+    xhttp.open("GET", "./api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
     xhttp.send();
 }
 
@@ -99,7 +105,6 @@ function dodaj_stacje(){
     var b98=document.getElementsByName("98")[0].checked;
     var lpg=document.getElementsByName("lpg")[0].checked;
     var godziny=document.getElementsByName("godziny_otwarcia")[0].value +" - "+document.getElementsByName("godziny_zamkniecia")[0].value;
-    console.log("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg+"&brandID="+siec+"&openingHours="+godziny);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
