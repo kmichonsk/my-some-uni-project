@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "b401b837-947d-441d-b7cd-444ffeb88f20",
+		"name": "sip",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/brands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/brands",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"brands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/stations",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Statoin\",\n    \"address\": \"Address\",\n    \"city\": \"City\",\n    \"postalCode\": \"31-111\",\n    \"hasFuel95\": true,\n    \"hasFuel98\": false,\n    \"hasFuelLpg\": false,\n    \"hasFuelDiesel\": false,\n    \"brandId\": \"1\",\n    \"openingHours\": \"11:00-18:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/stations",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations (Request Params)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Statoin\",\n    \"address\": \"Address\",\n    \"city\": \"City\",\n    \"postalCode\": \"31-111\",\n    \"hasFuel95\": true,\n    \"hasFuel98\": false,\n    \"hasFuelLpg\": false,\n    \"hasFuelDiesel\": false,\n    \"brandId\": \"1\",\n    \"openingHours\": \"11:00-18:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/stations?name=StacjaRP&address=Powstancow 1&city=Gdansk&postalCode=80-100&hasFuel95=true&hasFuel98=false&hasFuelDiesel=false&hasFuelLpg=true&brandId=1&openingHours=Od 11 do 20",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "StacjaRP"
+						},
+						{
+							"key": "address",
+							"value": "Powstancow 1"
+						},
+						{
+							"key": "city",
+							"value": "Gdansk"
+						},
+						{
+							"key": "postalCode",
+							"value": "80-100"
+						},
+						{
+							"key": "hasFuel95",
+							"value": "true"
+						},
+						{
+							"key": "hasFuel98",
+							"value": "false"
+						},
+						{
+							"key": "hasFuelDiesel",
+							"value": "false"
+						},
+						{
+							"key": "hasFuelLpg",
+							"value": "true"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "openingHours",
+							"value": "Od 11 do 20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 910,\n    \"hasFuelLpg\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/stations",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations (Request Params)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/stations?id=910&city=Nowe Miasto",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "910"
+						},
+						{
+							"key": "city",
+							"value": "Nowe Miasto"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
