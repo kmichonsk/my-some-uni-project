@@ -16,6 +16,10 @@ main{
     box-sizing: border-box;
     border-bottom:solid 2px #dddddd;
 }
+#form{
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
 .formularz > .name{
     width: 100%;
     padding: 10px;
@@ -53,4 +57,31 @@ input[type=text]{
 }
 .form-form > div{
     padding: 15px;
+}
+#add_siec{
+    float:right;
+}
+
+#results{
+    font-size: 17px;
+    color:#3a3a3a;
+}
+.stacja{
+    padding: 10px;
+    border-bottom:solid 2px #dddddd;
+}
+.nazwa_stacji{
+    font-weight:600;
+}
+.stacja_info{
+    padding-top:5px;
+}
+.spacja_paliwa{
+    padding-top: 5px;
+}
+.spacja_paliwa > div{
+    padding-left:8px;
+}
+.godziny_stacji{
+    padding-top: 5px;
 }

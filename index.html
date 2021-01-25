@@ -48,6 +48,8 @@
 		*/
 	}
 </script>
+<script type="text/javascript" src="api.js">
+</script>
 <body>
 <main id="main">
 <div id="form">
@@ -58,24 +60,21 @@
 	</div>
 	<div class="form-form" id="add_form">
 		<form>
-			<div><label>Adres stacji:</label><input type="text" name="adres" /></div>
+			<div><label>Miasto:</label><input type="text" name="miasto" /></div>
+			<div><label>ulica i numer:</label><input type="text" name="ulica" /></div>
+			<div><label>Kod pocztowy:</label><input type="text" name="kod" size="6" maxlength="6"/></div>
 			<div><label>Nazwa stacji:</label><input type="text" name="nazwa_stacji" /></div>
+			<div><label>Sieć:</label><select id="add_siec" type="text" name="siec"></select> </div>
 			<div>
 				<p>Dostępne paliwa:</p>
-				<div>
-					<label>ON:</label><input type="number" name="on">
-				</div>
-				<div>
-					<label>95:</label><input type="number" name="95">
-				</div>
-				<div>
-					<label>98:</label><input type="number" name="98">
-				</div>
-				<div>
-					<label>LPG:</label><input type="number" name="lpg">
-				</div>
+				<div><input type="checkbox" name="on" ><label>ON</label></div>
+				<div><input type="checkbox" name="95" ><label>95</label></div>
+				<div><input type="checkbox" name="98" ><label>96</label></div>
+				<div><input type="checkbox" name="lpg"><label>LPG</label></div>
 			</div>
-			<div><label>Godziny otwarcia:</label><input type="text" name="godziny_otwarcia" /></div>
+			<div><label>Godziny otwarcia:</br></label>
+			<label>od: </label><input type="time" name="godziny_otwarcia" /></br>
+			<label>do: </label><input type="time" name="godziny_zamkniecia" /></div>
 		</form>
 		<div><button onclick="dodaj_stacje()"> dodaj</button></div>
 	</div>
@@ -87,7 +86,7 @@
 	</div>
 	<div class="form-form" id="search_form">
 		<form>
-			<div><label>Adres stacji:</label><input type="text" name="adres" /></div>
+			<div><label>Miasto:</label><input type="text" name="adres" /></div>
 			<div>
 				<p>Paliwa:</p>
 				<div><input type="checkbox" name="on" value="on"><label>ON</label></div>

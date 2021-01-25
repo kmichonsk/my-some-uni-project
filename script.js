@@ -33,11 +33,3 @@ function show(x){
 	}
 	else{}
 }
-
-function dodaj_stacje(){
-
-}
-
-function szukaj_stacji(){
-
-}
