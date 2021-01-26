@@ -47,7 +47,7 @@ function marker(x,nazwa_sieci){
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(lat, lng),
 					map: map,
-					icon: nazwa_sieci.toLowerCase()+".png"
+					icon: "loga/"+nazwa_sieci.toLowerCase()+".png"
 				});
 			}
 		}
