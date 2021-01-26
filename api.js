@@ -1,3 +1,5 @@
+var test=false;
+
 function stacje(){
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -14,7 +16,12 @@ function stacje(){
 		}
     }
   };
-  xhttp.open("GET", "./api/brands", true);
+  if(test){
+	xhttp.open("GET", "http://localhost:8080/api/brands", true);
+  }
+  else{
+	xhttp.open("GET", "./api/brands", true);
+  }
   xhttp.send();
 }
 
@@ -22,14 +29,44 @@ window.onload = function() {
 	stacje();
 };
 
+function marker(x){
+	var adres=x;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var dane= JSON.parse(this.response);
+			var lat = dane.results[0].geometry.location.lat;
+			var lng = dane.results[0].geometry.location.lng;
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(lat, lng),
+				map: map
+			});
+		}
+	};
+	xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+adres+"&key=AIzaSyCZVFHwLmdrV2Uvgo3bOXYH8CwJ5CSB0Vw", true);
+	xhttp.send();
+}
+
 function szukaj_stacji(){
     var miasto=document.getElementsByName("miasto")[1].value;
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var danee= JSON.parse(this.response);
+			map_x = danee.results[0].geometry.location.lat;
+			map_y = danee.results[0].geometry.location.lng;
+			map_zoom=11;
+			init();
+		}
+	};
+	xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+miasto+"&key=AIzaSyCZVFHwLmdrV2Uvgo3bOXYH8CwJ5CSB0Vw", true);
+	xhttp.send();	
     var on=document.getElementsByName("on")[1].checked;
     var b95=document.getElementsByName("95")[1].checked;
     var b98=document.getElementsByName("98")[1].checked;
     var lpg=document.getElementsByName("lpg")[1].checked;
-
-    var xhttp = new XMLHttpRequest();
+	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 		var dane= JSON.parse(this.response);
@@ -86,11 +123,18 @@ function szukaj_stacji(){
 		    godziny.innerHTML="otwarte: "+dane[i].openingHours;
 		    stacja_info.appendChild(godziny);
 		    document.getElementById("results").appendChild(stacja);
+			marker(dane[i].address + " " + dane[i].city);
 		    i++;
 	    }
     }
-    };
-    xhttp.open("GET", "./api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
+	};
+	if(test){
+		xhttp.open("GET", "http://localhost:8080/api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
+	}
+	else{
+		xhttp.open("GET", "./api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
+	}
+    
     xhttp.send();
 }
 
@@ -100,10 +144,10 @@ function dodaj_stacje(){
     var kod=document.getElementsByName("kod")[0].value;
     var nazwa=document.getElementsByName("nazwa_stacji")[0].value;
     var siec=document.getElementsByName("siec")[0].value;
-    var on=document.getElementsByName("on")[0].checked;
-    var b95=document.getElementsByName("95")[0].checked;
-    var b98=document.getElementsByName("98")[0].checked;
-    var lpg=document.getElementsByName("lpg")[0].checked;
+    var on=document.getElementsByName("on")[0].value;
+    var b95=document.getElementsByName("95")[0].value;
+    var b98=document.getElementsByName("98")[0].value;
+    var lpg=document.getElementsByName("lpg")[0].value;
     var godziny=document.getElementsByName("godziny_otwarcia")[0].value +" - "+document.getElementsByName("godziny_zamkniecia")[0].value;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -111,7 +155,12 @@ function dodaj_stacje(){
 		
     }
     };
-    xhttp.open("POST", "./api/stations", true);
+	if(test){
+		xhttp.open("POST", "http://localhost:8080/api/stations", true);
+	}
+	else{
+		xhttp.open("POST", "./api/stations", true);
+	}
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg+"&brandID="+siec+"&openingHours="+godziny);
 }
