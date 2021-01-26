@@ -29,7 +29,7 @@ window.onload = function() {
 	stacje();
 };
 
-function marker(x){
+function marker(x,nazwa_sieci){
 	var adres=x;
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -37,10 +37,19 @@ function marker(x){
 			var dane= JSON.parse(this.response);
 			var lat = dane.results[0].geometry.location.lat;
 			var lng = dane.results[0].geometry.location.lng;
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(lat, lng),
-				map: map
-			});
+			if(nazwa_sieci.toLowerCase()=="inna"){
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(lat, lng),
+					map: map
+				});
+			}
+			else{
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(lat, lng),
+					map: map,
+					icon: nazwa_sieci.toLowerCase()+".png"
+				});
+			}
 		}
 	};
 	xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+adres+"&key=AIzaSyCZVFHwLmdrV2Uvgo3bOXYH8CwJ5CSB0Vw", true);
@@ -123,7 +132,7 @@ function szukaj_stacji(){
 		    godziny.innerHTML="otwarte: "+dane[i].openingHours;
 		    stacja_info.appendChild(godziny);
 		    document.getElementById("results").appendChild(stacja);
-			marker(dane[i].address + " " + dane[i].city);
+			marker(dane[i].address + " " + dane[i].city, dane[i].brand.name);
 		    i++;
 	    }
     }
