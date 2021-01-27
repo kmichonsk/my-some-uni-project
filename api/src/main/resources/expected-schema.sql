@@ -14,5 +14,7 @@ CREATE TABLE IF NOT EXISTS stations (
     has_fuel_diesel float DEFAULT NULL,
     has_fuel_lpg float DEFAULT NULL,
     brand int DEFAULT NULL,
-    opening_hours varchar(255) DEFAULT NULL
+    opening_hours varchar(255) DEFAULT NULL,
+	latitude float DEFAULT NULL,
+	longitude float DEFAULT NULL
 ) DEFAULT CHARSET=utf8;
