@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class AppController {
