@@ -15,10 +15,10 @@ public class UpdateStationDto {
     private String address;
     private String city;
     private String postalCode;
-    private Boolean hasFuel95;
-    private Boolean hasFuel98;
-    private Boolean hasFuelDiesel;
-    private Boolean hasFuelLpg;
+    private Long priceFuel95;
+    private Long priceFuel98;
+    private Long priceFuelDiesel;
+    private Long priceFuelLpg;
     private Long brandId;
     private String openingHours;
 }

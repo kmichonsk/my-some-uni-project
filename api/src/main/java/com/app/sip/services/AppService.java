@@ -78,17 +78,17 @@ public class AppService {
         if (Objects.nonNull(updateStationDto.getName())) {
             station.setName(updateStationDto.getName());
         }
-        if (Objects.nonNull(updateStationDto.getHasFuel95())) {
-            station.setHasFuel95(updateStationDto.getHasFuel95());
+        if (Objects.nonNull(updateStationDto.getPriceFuel95())) {
+            station.setPriceFuel95(updateStationDto.getPriceFuel95());
         }
-        if (Objects.nonNull(updateStationDto.getHasFuel98())) {
-            station.setHasFuel98(updateStationDto.getHasFuel98());
+        if (Objects.nonNull(updateStationDto.getPriceFuel98())) {
+            station.setPriceFuel98(updateStationDto.getPriceFuel98());
         }
-        if (Objects.nonNull(updateStationDto.getHasFuelDiesel())) {
-            station.setHasFuelDiesel(updateStationDto.getHasFuelDiesel());
+        if (Objects.nonNull(updateStationDto.getPriceFuelDiesel())) {
+            station.setPriceFuelDiesel(updateStationDto.getPriceFuelDiesel());
         }
-        if (Objects.nonNull(updateStationDto.getHasFuelLpg())) {
-            station.setHasFuelLpg(updateStationDto.getHasFuelLpg());
+        if (Objects.nonNull(updateStationDto.getPriceFuelLpg())) {
+            station.setPriceFuelLpg(updateStationDto.getPriceFuelLpg());
         }
         if (Objects.nonNull(updateStationDto.getPostalCode())) {
             station.setPostalCode(updateStationDto.getPostalCode());

@@ -7,7 +7,7 @@ INSERT INTO brands (id, name) VALUES
 (6, 'CIRCLE K');
 
 INSERT INTO stations (id, name, address, city, postal_code,
-                      has_fuel95, has_fuel98, has_fuel_diesel, has_fuel_lpg,
+                      price_fuel95, price_fuel98, price_fuel_diesel, price_fuel_lpg,
                       brand_id, opening_hours, latitude, longitude) VALUES
 (1, 'PHU SEGA SP Z OO', 'UDORPIE 36', 'BYTÓW', '77-100', '4.8', '0', '4.93', '0', 1, '6.00 - 22.00', '54.1437726', '17.4905831'),
 (2, 'PRZEDSIĘBIORSTWO ROBÓT INŻYNIERYJNYCH WIKING SP.Z O.O.', 'PRZEMYSŁOWA  2', 'BYTÓW', '77-100', '4.6', '5.04', '4.68', '2.08', 1, '', '52.7258600', '15.2442690'),
@@ -316,10 +316,7 @@ INSERT INTO stations (id, name, address, city, postal_code,
 (305, 'FIRMA \"SZANK-EL\" SP. JAWNA JAROSŁAW GUTFRAŃSKI, ARKADIUSZ PUCZYŃSKI', 'ŻAGLOWA 2', 'GDAŃSK', '80-560', '4.46', '4.93', '4.68', '2.29', 1, '', '54.3864490', '18.6374931'),
 (306, 'H. WOŻNIAK', 'BUDOWLANYCH 21', 'GDAŃSK', '', '4.56', '4.61', '4.78', '2.17', 1, '', '54.3651975', '18.4712811'),
 (307, 'PHU \"MIRAS\" MIROSŁAW OSOWSKI', 'B. CHROBREGO 79A', 'GDAŃSK', '80-414', '4.7', '4.83', '4.58', '2.03', 1, '', '54.3929299', '18.6186102'),
-(308, 'STACJA PALIW LUKOIL (AMIC POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ)', 'ELBLĄSKA 114', 'GDAŃSK', '80-718', '4.65', '4.72', '4.83', '2.24', 1, '', '54.3445550', '18.7199560');
-INSERT INTO stations (id, name, address, city, postal_code,
-                      has_fuel95, has_fuel98, has_fuel_diesel, has_fuel_lpg,
-                      brand_id, opening_hours, latitude, longitude) VALUES
+(308, 'STACJA PALIW LUKOIL (AMIC POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ)', 'ELBLĄSKA 114', 'GDAŃSK', '80-718', '4.65', '4.72', '4.83', '2.24', 1, '', '54.3445550', '18.7199560'),
 (309, 'SHELL POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (STACJA NR 2015)', 'ZŁOTA KARCZMA 1  / WĘZEŁ MATARNIA', 'GDAŃSK', '80-298', '4.8', '0', '4.58', '2.29', 5, '', '54.3719838', '18.5220840'),
 (310, 'PRZEDSIĘBIORSTWO PRYWATNE INWESTYCJE NIERUCHOMOŚCI', 'GDAŃSK-MATARNIA', 'GDAŃSK', '', '4.46', '4.88', '4.83', '2.15', 1, '', '54.3855585', '18.4738153'),
 (311, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'GRUNWALDZKA 229/237', 'GDAŃSK', '80-266', '4.65', '0', '4.63', '2.19', 3, '', '54.3907910', '18.5866071'),
@@ -621,10 +618,7 @@ INSERT INTO stations (id, name, address, city, postal_code,
 (607, 'POLSKI KONCERN NAFTOWY ORLEN SPÓŁKA AKCYJNA NR 1034', 'KOŁBASKOWO 119B', 'KOŁBASKOWO', '72-001', '4.65', '4.83', '4.73', '0', 2, '', '53.3406869', '14.4472990'),
 (608, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'KOŁBASKOWO 127', 'KOŁBASKOWO', '71-001', '4.6', '4.77', '4.83', '2.12', 3, '', '53.3389139', '14.4248730'),
 (609, 'STACJA PALIW P.U.H. IMMER-TANK SP. J.', 'KOŁBASKOWO NR 73', 'KOŁBASKOWO', '72-001', '4.46', '5.15', '4.58', '2.08', 1, '', '53.3312800', '14.4361590'),
-(610, 'FARAON PLUS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', 'KOŁBASKOWO 63A', 'KOŁBASKOWO', '72-001', '4.56', '5.04', '0', '2.19', 1, '', '53.3330628', '14.4325343');
-INSERT INTO stations (id, name, address, city, postal_code,
-                      has_fuel95, has_fuel98, has_fuel_diesel, has_fuel_lpg,
-                      brand_id, opening_hours, latitude, longitude) VALUES
+(610, 'FARAON PLUS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', 'KOŁBASKOWO 63A', 'KOŁBASKOWO', '72-001', '4.56', '5.04', '0', '2.19', 1, '', '53.3330628', '14.4325343'),
 (611, 'POLSKI KONCERN NAFTOWY ORLEN SPÓŁKA AKCYJNA (STACJA NR 4023)', 'LUBIESZYN 11B', 'LUBIESZYN', '72-002', '4.7', '4.99', '4.83', '2.22', 2, '', '53.4523546', '14.3802635'),
 (612, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'LUBIESZYN 3D', 'LUBIESZYN (DOŁUJE)', '72-002', '4.7', '4.83', '0', '2.03', 3, '', '54.0988770', '18.2382940'),
 (613, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'LUBIESZYN 25', 'LUBIESZYN (DOŁUJE)', '72-002', '4.7', '5.09', '4.93', '2.31', 3, '', '53.4500435', '14.3862828'),
@@ -844,4 +838,3 @@ INSERT INTO stations (id, name, address, city, postal_code,
 
 ALTER TABLE stations
   MODIFY id int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=827;
-

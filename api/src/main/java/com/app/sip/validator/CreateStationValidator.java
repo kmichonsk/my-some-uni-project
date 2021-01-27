@@ -26,20 +26,20 @@ public class CreateStationValidator extends AbstractValidator<CreateStationDto> 
             errors.put("postalCode", "postalCode must be a polish format postal-code(\\d{2}-\\d{3})");
         }
 
-        if (Objects.isNull(createStationDto.getHasFuel95())) {
-            errors.put("hasFuel95", "hasFuel95 must be non-null boolean value");
+        if (Objects.isNull(createStationDto.getPriceFuel95())) {
+            errors.put("priceFuel95", "priceFuel95 must be non-null boolean value");
         }
 
-        if (Objects.isNull(createStationDto.getHasFuel98())) {
-            errors.put("hasFuel98", "hasFuel98 must be non-null boolean value");
+        if (Objects.isNull(createStationDto.getPriceFuel98())) {
+            errors.put("priceFuel98", "priceFuel98 must be non-null boolean value");
         }
 
-        if (Objects.isNull(createStationDto.getHasFuel95())) {
-            errors.put("hasFuelDiesel", "hasFuelDiesel must be non-null boolean value");
+        if (Objects.isNull(createStationDto.getPriceFuel95())) {
+            errors.put("priceFuelDiesel", "priceFuelDiesel must be non-null boolean value");
         }
 
-        if (Objects.isNull(createStationDto.getHasFuel95())) {
-            errors.put("hasFuelLpg", "hasFuelLpg must be non-null boolean value");
+        if (Objects.isNull(createStationDto.getPriceFuel95())) {
+            errors.put("priceFuelLpg", "priceFuelLpg must be non-null boolean value");
         }
 
         if (Objects.isNull(createStationDto.getBrandId())) {
