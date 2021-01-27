@@ -44,34 +44,6 @@
 			"response": []
 		},
 		{
-			"name": "api/stations",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"New Statoin\",\n    \"address\": \"Address\",\n    \"city\": \"City\",\n    \"postalCode\": \"31-111\",\n    \"hasFuel95\": true,\n    \"hasFuel98\": false,\n    \"hasFuelLpg\": false,\n    \"hasFuelDiesel\": false,\n    \"brandId\": \"1\",\n    \"openingHours\": \"11:00-18:00\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/stations",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"stations"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "api/stations (Request Params)",
 			"request": {
 				"method": "POST",
@@ -142,34 +114,6 @@
 			"response": []
 		},
 		{
-			"name": "api/stations",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": 910,\n    \"hasFuelLpg\": true\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/api/stations",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"stations"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "api/stations (Request Params)",
 			"request": {
 				"method": "PATCH",
@@ -201,6 +145,36 @@
 						{
 							"key": "city",
 							"value": "Nowe Miasto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/stations/nearest (Request Params)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/stations/nearest?latitude=53.909598&longitude=15.193975",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stations",
+						"nearest"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "53.909598"
+						},
+						{
+							"key": "longitude",
+							"value": "15.193975"
 						}
 					]
 				}
