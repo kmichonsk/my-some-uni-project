@@ -97,27 +97,27 @@ function szukaj_stacji(){
 		    var paliwa=document.createElement("DIV");
 		    paliwa.className="spacja_paliwa";
 		    var temp=0;
-		    if(dane[i].hasFuel95){
+		    if(dane[i].priceFuel95){
 			    var paliwo=document.createElement("DIV");
-			    paliwo.innerHTML="Benzyna 95: "+dane[i].hasFuel95 +" zł";
+			    paliwo.innerHTML="Benzyna 95: "+dane[i].priceFuel95 +" zł";
 			    paliwa.appendChild(paliwo);
 			    temp++;
 		    }
-		    if(dane[i].hasFuel98){
+		    if(dane[i].priceFuel98){
 			    var paliwo=document.createElement("DIV");
-			    paliwo.innerHTML="Benzyna 98: "+dane[i].hasFuel98 +" zł";
+			    paliwo.innerHTML="Benzyna 98: "+dane[i].priceFuel98 +" zł";
 			    paliwa.appendChild(paliwo);
 			    temp++;
 		    }
-		    if(dane[i].hasFuelDisesel){
+		    if(dane[i].priceFuelDisesel){
 			    var paliwo=document.createElement("DIV");
-			    paliwo.innerHTML="Diesel: "+dane[i].hasFuelDisesel +" zł";
+			    paliwo.innerHTML="Diesel: "+dane[i].priceFuelDisesel +" zł";
 			    paliwa.appendChild(paliwo);
 			    temp++;
 		    }
-		    if(dane[i].hasFuelLpg){
+		    if(dane[i].priceFuelLpg){
 			    var paliwo=document.createElement("DIV");
-			    paliwo.innerHTML="Lpg: "+dane[i].hasFuelLpg +" zł";
+			    paliwo.innerHTML="Lpg: "+dane[i].priceFuelLpg +" zł";
 			    paliwa.appendChild(paliwo);
 			    temp++;
 		    }
@@ -138,10 +138,10 @@ function szukaj_stacji(){
     }
 	};
 	if(test){
-		xhttp.open("GET", "http://localhost:8080/api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
+		xhttp.open("GET", "http://localhost:8080/api/stations?city="+miasto+"&priceFuel95="+b95+"&priceFuel98="+b98+"&priceFuelDiesel="+on+"&priceFuelLpg="+lpg, true);
 	}
 	else{
-		xhttp.open("GET", "./api/stations?city="+miasto+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg, true);
+		xhttp.open("GET", "./api/stations?city="+miasto+"&priceFuel95="+b95+"&priceFuel98="+b98+"&priceFuelDiesel="+on+"&priceFuelLpg="+lpg, true);
 	}
     
     xhttp.send();
@@ -171,5 +171,5 @@ function dodaj_stacje(){
 		xhttp.open("POST", "./api/stations", true);
 	}
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&hasFuel95="+b95+"&hasFuel98="+b98+"&hasFuelDiesel="+on+"&hasFuelLpg="+lpg+"&brandID="+siec+"&openingHours="+godziny);
+    xhttp.send("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&priceFuel95="+b95+"&priceFuel98="+b98+"&priceFuelDiesel="+on+"&priceFuelLpg="+lpg+"&brandId="+siec+"&openingHours="+godziny);
 }

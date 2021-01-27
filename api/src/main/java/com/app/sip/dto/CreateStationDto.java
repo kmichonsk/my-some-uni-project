@@ -16,10 +16,10 @@ public class CreateStationDto {
     private String address;
     private String city;
     private String postalCode;
-    private Long priceFuel95;
-    private Long priceFuel98;
-    private Long priceFuelDiesel;
-    private Long priceFuelLpg;
+    private Double priceFuel95;
+    private Double priceFuel98;
+    private Double priceFuelDiesel;
+    private Double priceFuelLpg;
     private Long brandId;
     private String openingHours;
 }

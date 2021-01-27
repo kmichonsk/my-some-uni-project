@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -26,77 +25,63 @@ public class AppController {
         return appService.getAllStations();
     }
 
-
-    // support both by body and request params
     @PostMapping("/stations")
     public Long addStation(
-            @RequestParam Optional<String> name,
-            @RequestParam Optional<String> address,
-            @RequestParam Optional<String> city,
-            @RequestParam Optional<String> postalCode,
-            @RequestParam Optional<Long> priceFuel95,
-            @RequestParam Optional<Long> priceFuel98,
-            @RequestParam Optional<Long> priceFuelDiesel,
-            @RequestParam Optional<Long> priceFuelLpg,
-            @RequestParam Optional<Long> brandId,
-            @RequestParam Optional<String> openingHours,
-            @RequestBody Optional<CreateStationDto> createStationDto) {
-        if (name.isPresent() && address.isPresent() && city.isPresent() && postalCode.isPresent() &&
-                priceFuel95.isPresent() && priceFuel98.isPresent() && priceFuelDiesel.isPresent() &&
-                priceFuelLpg.isPresent() && brandId.isPresent() && openingHours.isPresent()) {
-            return appService.addStation(
-                    CreateStationDto.builder()
-                            .name(name.get()).address(address.get()).city(city.get()).postalCode(postalCode.get())
-                            .priceFuel95(priceFuel95.get()).priceFuel98(priceFuel98.get()).priceFuelDiesel(priceFuelDiesel.get())
-                            .priceFuelLpg(priceFuelLpg.get()).brandId(brandId.get()).openingHours(openingHours.get())
-                            .build());
-        }
-        else if (name.isPresent() || address.isPresent() || city.isPresent() || postalCode.isPresent() ||
-                priceFuel95.isPresent() || priceFuel98.isPresent() || priceFuelDiesel.isPresent() ||
-                priceFuelLpg.isPresent() || brandId.isPresent() || openingHours.isPresent()) {
-            throw new RuntimeException("AppController: addStation: not all required request params specified");
-        }
-        else if (createStationDto.isEmpty()) {
-            throw new RuntimeException("AppController: addStation: missing data in either request body or request params");
-        }
-        return appService.addStation(createStationDto.get());
+            @RequestParam String name,
+            @RequestParam String address,
+            @RequestParam String city,
+            @RequestParam String postalCode,
+            @RequestParam String priceFuel95,
+            @RequestParam String priceFuel98,
+            @RequestParam String priceFuelDiesel,
+            @RequestParam String priceFuelLpg,
+            @RequestParam String brandId,
+            @RequestParam String openingHours) {
+        if (priceFuel95.isBlank()) priceFuel95 = "0.0";
+        if (priceFuel98.isBlank()) priceFuel98 = "0.0";
+        if (priceFuelDiesel.isBlank()) priceFuelDiesel = "0.0";
+        if (priceFuelLpg.isBlank()) priceFuelLpg = "0.0";
+        return appService.addStation(
+                CreateStationDto.builder()
+                        .name(name)
+                        .address(address)
+                        .city(city)
+                        .postalCode(postalCode)
+                        .priceFuel95(Double.valueOf(priceFuel95))
+                        .priceFuel98(Double.valueOf(priceFuel98))
+                        .priceFuelDiesel(Double.valueOf(priceFuelDiesel))
+                        .priceFuelLpg(Double.valueOf(priceFuelLpg))
+                        .brandId(Long.valueOf(brandId))
+                        .openingHours(openingHours)
+                        .build());
     }
 
     @PatchMapping("/stations")
     public Long updateStation(
-            @RequestParam Optional<Long> id,
-            @RequestParam Optional<String> name,
-            @RequestParam Optional<String> address,
-            @RequestParam Optional<String> city,
-            @RequestParam Optional<String> postalCode,
-            @RequestParam Optional<Long> priceFuel95,
-            @RequestParam Optional<Long> priceFuel98,
-            @RequestParam Optional<Long> priceFuelDiesel,
-            @RequestParam Optional<Long> priceFuelLpg,
-            @RequestParam Optional<Long> brandId,
-            @RequestParam Optional<String> openingHours,
-            @RequestBody Optional<UpdateStationDto> updateStationDto) {
-        if (name.isPresent() || address.isPresent() || city.isPresent() || postalCode.isPresent() ||
-                priceFuel95.isPresent() || priceFuel98.isPresent() || priceFuelDiesel.isPresent() ||
-                priceFuelLpg.isPresent() || brandId.isPresent() || openingHours.isPresent()) {
-            return appService.updateStation(
-                    UpdateStationDto.builder()
-                            .id(id.orElse(null))
-                            .name(name.orElse(null))
-                            .address(address.orElse(null))
-                            .city(city.orElse(null))
-                            .postalCode(postalCode.orElse(null))
-                            .priceFuel95(priceFuel95.orElse(null))
-                            .priceFuel98(priceFuel98.orElse(null))
-                            .priceFuelDiesel(priceFuelDiesel.orElse(null))
-                            .priceFuelLpg(priceFuelLpg.orElse(null))
-                            .brandId(brandId.orElse(null))
-                            .openingHours(openingHours.orElse(null))
-                            .build());
-        }
-        else if (updateStationDto.isEmpty()) {
-            throw new RuntimeException("AppController: addStation: missing data in either request body or request params");
-        }
-        return appService.updateStation(updateStationDto.get());
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String address,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String postalCode,
+            @RequestParam(required = false) Double priceFuel95,
+            @RequestParam(required = false) Double priceFuel98,
+            @RequestParam(required = false) Double priceFuelDiesel,
+            @RequestParam(required = false) Double priceFuelLpg,
+            @RequestParam(required = false) Long brandId,
+            @RequestParam(required = false) String openingHours) {
+        return appService.updateStation(
+                UpdateStationDto.builder()
+                        .id(id)
+                        .name(name)
+                        .address(address)
+                        .city(city)
+                        .postalCode(postalCode)
+                        .priceFuel95(priceFuel95)
+                        .priceFuel98(priceFuel98)
+                        .priceFuelDiesel(priceFuelDiesel)
+                        .priceFuelLpg(priceFuelLpg)
+                        .brandId(brandId)
+                        .openingHours(openingHours)
+                        .build());
     }
 }
