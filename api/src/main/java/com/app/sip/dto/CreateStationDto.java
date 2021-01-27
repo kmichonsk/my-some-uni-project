@@ -22,4 +22,6 @@ public class CreateStationDto {
     private Double priceFuelLpg;
     private Long brandId;
     private String openingHours;
+    private Double latitude;
+    private Double longitude;
 }

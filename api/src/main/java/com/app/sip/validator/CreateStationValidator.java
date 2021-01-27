@@ -50,6 +50,14 @@ public class CreateStationValidator extends AbstractValidator<CreateStationDto> 
             errors.put("openingHours", "openingHours  must be a non-empty string");
         }
 
+        if (Objects.isNull(createStationDto.getLatitude())) {
+            errors.put("latitude", "latitude can't be null");
+        }
+
+        if (Objects.isNull(createStationDto.getLongitude())) {
+            errors.put("longitude", "longitude can't be null");
+        }
+
         return errors;
     }
 }

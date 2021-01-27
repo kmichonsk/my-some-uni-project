@@ -22,4 +22,6 @@ public class GetStationDto {
     private Double priceFuelLpg;
     private GetBrandDto brand;
     private String openingHours;
+    private Double latitude;
+    private Double longitude;
 }

@@ -3,7 +3,6 @@ package com.app.sip.mappers;
 import com.app.sip.dto.CreateStationDto;
 import com.app.sip.dto.GetBrandDto;
 import com.app.sip.dto.GetStationDto;
-import com.app.sip.dto.UpdateStationDto;
 import com.app.sip.model.Brand;
 import com.app.sip.model.Station;
 
@@ -28,6 +27,8 @@ public interface Mappers {
                 .priceFuelLpg(station.getPriceFuelLpg())
                 .postalCode(station.getPostalCode())
                 .openingHours(station.getOpeningHours())
+                .latitude(station.getLatitude())
+                .longitude(station.getLongitude())
                 .build();
     }
 
@@ -42,6 +43,8 @@ public interface Mappers {
                 .priceFuelLpg(createStationDto.getPriceFuelLpg())
                 .postalCode(createStationDto.getPostalCode())
                 .openingHours(createStationDto.getOpeningHours())
+                .latitude(createStationDto.getLatitude())
+                .longitude(createStationDto.getLongitude())
                 .build();
     }
 }

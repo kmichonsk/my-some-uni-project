@@ -26,4 +26,7 @@ public class Station {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Brand brand;
     private String openingHours;
+
+    private Double latitude;
+    private Double longitude;
 }

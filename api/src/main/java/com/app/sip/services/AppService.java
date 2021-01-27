@@ -1,9 +1,6 @@
 package com.app.sip.services;
 
-import com.app.sip.dto.CreateStationDto;
-import com.app.sip.dto.GetBrandDto;
-import com.app.sip.dto.GetStationDto;
-import com.app.sip.dto.UpdateStationDto;
+import com.app.sip.dto.*;
 import com.app.sip.mappers.Mappers;
 import com.app.sip.repositories.BrandsRepository;
 import com.app.sip.repositories.StationsRepository;
@@ -13,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -58,8 +56,8 @@ public class AppService {
             throw new RuntimeException(message);
         }
 
-        var station = stationsRepository.findById(updateStationDto.getId()).orElseThrow(()-> {
-                    throw new RuntimeException("AppService: updateStation: no station with id: " + updateStationDto.getId());
+        var station = stationsRepository.findById(updateStationDto.getId()).orElseThrow(() -> {
+            throw new RuntimeException("AppService: updateStation: no station with id: " + updateStationDto.getId());
         });
 
         if (Objects.nonNull(updateStationDto.getBrandId())) {
@@ -93,6 +91,12 @@ public class AppService {
         if (Objects.nonNull(updateStationDto.getPostalCode())) {
             station.setPostalCode(updateStationDto.getPostalCode());
         }
+        if (Objects.nonNull(updateStationDto.getLatitude())) {
+            station.setLatitude(updateStationDto.getLatitude());
+        }
+        if (Objects.nonNull(updateStationDto.getLongitude())) {
+            station.setLongitude(updateStationDto.getLongitude());
+        }
 
         return stationsRepository.save(station).getId();
     }
@@ -109,6 +113,26 @@ public class AppService {
         return brandsRepository.findAll()
                 .stream()
                 .map(Mappers::fromBrandToGetBrandDto)
+                .collect(Collectors.toList());
+    }
+
+    private static Double calculateDistance(Double latitude1, Double longitude1,
+                                            Double latitude2, Double longitude2) {
+        // optimized version -> /27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+        var p = 0.017453292519943295; // Math.PI / 180
+        var a = 0.5 - (Math.cos((latitude2 - latitude1) * p) / 2) +
+                (Math.cos(latitude1 * p) * Math.cos(latitude2 * p) *
+                        (1 - Math.cos((longitude2 - longitude1) * p)) / 2);
+
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    }
+
+    public List<GetStationDto> getNearest(Double latitude, Double longitude) {
+        return stationsRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(s -> calculateDistance(latitude, longitude, s.getLatitude(), s.getLongitude())))
+                .limit(10)
+                .map(Mappers::fromStationToGetStationDto)
                 .collect(Collectors.toList());
     }
 }
