@@ -8,46 +8,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 <script type="text/javascript">
-	var dane;
-	var map_x=51.95939844770308;
-	var map_y=19.00000000000001;
-	var map_zoom=6;
 	var mapElement;
 	var map;
-		google.maps.event.addDomListener(window, 'load', init);
-		function init() {
-			var mapOptions = {
-				zoom: map_zoom,
-				center: new google.maps.LatLng(map_x, map_y), 
-				styles: [
-					{"elementType": "geometry","stylers": [ { "color": "#252525" } ] },
-					{"elementType": "labels.text.fill", "stylers": [ { "color": "#746855" } ] },
-					{"elementType": "labels.text.stroke", "stylers": [ { "color": "#202020" } ] },
-					{"featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [ { "color": "#e0e0e0" } ] },
-					{"featureType": "administrative.country", "elementType": "geometry", "stylers": [ { "color": "#a8a8a8" } ] },
-					{"featureType": "administrative.province", "elementType": "geometry", "stylers": [ { "color": "#989898" } ] },
-					{"featureType": "landscape.man_made", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] },
-					{"featureType": "landscape.natural.landcover", "elementType": "geometry.fill", "stylers": [ { "visibility": "simplified" } ] },
-					{"featureType": "poi", "elementType": "labels.text.fill", "stylers": [ { "color": "#e0e0e0" } ] },
-					{"featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#143d25" } ] },
-					{"featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [ { "color": "#6b9a76" } ] },
-					{"featureType": "road", "elementType": "geometry", "stylers": [ { "color": "#7a7a7a" } ] },
-					{"featureType": "road", "elementType": "geometry.stroke", "stylers": [ { "color": "#212a37" } ] },
-					{"featureType": "road", "elementType": "labels.text.fill", "stylers": [ { "color": "#9ca5b3" } ] },
-					{"featureType": "road.local", "elementType": "geometry", "stylers": [ { "color": "#5f5f5f" } ] },
-					{"featureType": "road.highway", "elementType": "geometry", "stylers": [ { "color": "#771a09" } ] },
-					{"featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [ { "color": "#1f2835" } ] },
-					{"featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [ { "color": "#cccccc" } ] },
-					{"featureType": "transit", "elementType": "geometry", "stylers": [ { "color": "#161616" } ] },
-					{"featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [ { "color": "#d0d0d0" } ] },
-					{"featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#17263c" } ] },
-					{"featureType": "water", "elementType": "labels.text.fill",  "stylers": [  { "color": "#515c6d" }  ]  },
-					{"featureType": "water", "elementType": "labels.text.stroke", "stylers": [ { "color": "#17263c" } ] }
-				]
-			};
-			mapElement = document.getElementById('google_map');
-			map = new google.maps.Map(mapElement, mapOptions);
-		}
+	google.maps.event.addDomListener(window, 'load', init);
+	function init() {
+		var mapOptions = {
+			zoom: 6,
+			center: new google.maps.LatLng(51.95939844770308, 19.00000000000001), 
+			styles: [
+				{"elementType": "geometry","stylers": [ { "color": "#252525" } ] },
+				{"elementType": "labels.text.fill", "stylers": [ { "color": "#746855" } ] },
+				{"elementType": "labels.text.stroke", "stylers": [ { "color": "#202020" } ] },
+				{"featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [ { "color": "#e0e0e0" } ] },
+				{"featureType": "administrative.country", "elementType": "geometry", "stylers": [ { "color": "#a8a8a8" } ] },
+				{"featureType": "administrative.province", "elementType": "geometry", "stylers": [ { "color": "#989898" } ] },
+				{"featureType": "landscape.man_made", "elementType": "geometry", "stylers": [ { "visibility": "off" } ] },
+				{"featureType": "landscape.natural.landcover", "elementType": "geometry.fill", "stylers": [ { "visibility": "simplified" } ] },
+				{"featureType": "poi", "elementType": "labels.text.fill", "stylers": [ { "color": "#e0e0e0" } ] },
+				{"featureType": "poi.park", "elementType": "geometry", "stylers": [ { "color": "#143d25" } ] },
+				{"featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [ { "color": "#6b9a76" } ] },
+				{"featureType": "road", "elementType": "geometry", "stylers": [ { "color": "#7a7a7a" } ] },
+				{"featureType": "road", "elementType": "geometry.stroke", "stylers": [ { "color": "#212a37" } ] },
+				{"featureType": "road", "elementType": "labels.text.fill", "stylers": [ { "color": "#9ca5b3" } ] },
+				{"featureType": "road.local", "elementType": "geometry", "stylers": [ { "color": "#5f5f5f" } ] },
+				{"featureType": "road.highway", "elementType": "geometry", "stylers": [ { "color": "#771a09" } ] },
+				{"featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [ { "color": "#1f2835" } ] },
+				{"featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [ { "color": "#cccccc" } ] },
+				{"featureType": "transit", "elementType": "geometry", "stylers": [ { "color": "#161616" } ] },
+				{"featureType": "transit.station", "elementType": "labels.text.fill", "stylers": [ { "color": "#d0d0d0" } ] },
+				{"featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#17263c" } ] },
+				{"featureType": "water", "elementType": "labels.text.fill",  "stylers": [  { "color": "#515c6d" }  ]  },
+				{"featureType": "water", "elementType": "labels.text.stroke", "stylers": [ { "color": "#17263c" } ] }
+			]
+		};
+		mapElement = document.getElementById('google_map');
+		map = new google.maps.Map(mapElement, mapOptions);
+	}
 </script>
 <script type="text/javascript" src="api.js">
 </script>
@@ -69,10 +65,10 @@
 			<div><label>Sieć:</label><select id="add_siec" type="text" name="siec"></select> </div>
 			<div>
 				<p>Dostępne paliwa:</p>
-				<div><input type="number" name="on" ><label>ON</label></div>
-				<div><input type="number" name="95" ><label>95</label></div>
-				<div><input type="number" name="98" ><label>96</label></div>
-				<div><input type="number" name="lpg"><label>LPG</label></div>
+				<div><input type="number" name="on" step="0.01"><label>ON</label></div>
+				<div><input type="number" name="95" step="0.01"><label>95</label></div>
+				<div><input type="number" name="98" step="0.01"><label>96</label></div>
+				<div><input type="number" name="lpg" step="0.01"><label>LPG</label></div>
 			</div>
 			<div><label>Godziny otwarcia:</br></label>
 			<label>od: </label><input type="time" name="godziny_otwarcia" /></br>
