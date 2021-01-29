@@ -185,7 +185,7 @@ function szukaj_stacji(){
 			paliwa.appendChild(paliwo);
 
 			paliwo=document.createElement("DIV");
-			paliwo.innerHTML="Diesel: <span>"+dane[i].priceFuelDisesel +"</span> zł";
+			paliwo.innerHTML="Diesel: <span>"+dane[i].priceFuelDiesel +"</span> zł";
 			paliwa.appendChild(paliwo);
 
 			paliwo=document.createElement("DIV");
