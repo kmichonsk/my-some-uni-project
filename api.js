@@ -36,6 +36,7 @@ function edycja(x,id_stacji){
 	block_95.setAttribute("type","number");
 	block_95.setAttribute("step","0.01");
 	block_95.setAttribute("value",e_95);
+	block_95.setAttribute("id","edit_95");
 	temp.innerHTML="Benzyna 95: ";
 	temp.appendChild(block_95);
 	formularz.appendChild(temp);
@@ -44,6 +45,7 @@ function edycja(x,id_stacji){
 	block_98.setAttribute("type","number");
 	block_98.setAttribute("step","0.01");
 	block_98.setAttribute("value",e_98);
+	block_98.setAttribute("id","edit_98");
 	temp.innerHTML="Benzyna 98: ";
 	temp.appendChild(block_98);
 	formularz.appendChild(temp);
@@ -52,6 +54,7 @@ function edycja(x,id_stacji){
 	block_d.setAttribute("type","number");
 	block_d.setAttribute("step","0.01");
 	block_d.setAttribute("value",e_diesel);
+	block_d.setAttribute("id","edit_diesel");
 	temp.innerHTML="Diesel: ";
 	temp.appendChild(block_d);
 	formularz.appendChild(temp);
@@ -60,6 +63,7 @@ function edycja(x,id_stacji){
 	block_lpg.setAttribute("type","number");
 	block_lpg.setAttribute("step","0.01");
 	block_lpg.setAttribute("value",e_lpg);
+	block_lpg.setAttribute("id","edit_lpg");
 	temp.innerHTML="Lpg: ";
 	temp.appendChild(block_lpg);
 	formularz.appendChild(temp);
@@ -67,6 +71,7 @@ function edycja(x,id_stacji){
 
 	czas_od.setAttribute("type","time");
 	czas_od.setAttribute("value",e_czas[0]);
+	czas_od.setAttribute("id","edit_czas_od");
 	temp.innerHTML="Od: ";
 	temp.appendChild(czas_od);
 	formularz.appendChild(temp);
@@ -74,6 +79,7 @@ function edycja(x,id_stacji){
 
 	czas_do.setAttribute("type","time");
 	czas_do.setAttribute("value",e_czas[1]);
+	czas_do.setAttribute("id","edit_czas_do");
 	temp.innerHTML="Od: ";
 	temp.appendChild(czas_do);
 	formularz.appendChild(temp);
@@ -81,9 +87,6 @@ function edycja(x,id_stacji){
 	temp=document.createElement("div");
 
 	var buttons=document.createElement("button");
-	buttons.setAttribute("onclick","usun('"+id_stacji+"')");
-	buttons.innerHTML="usuń stacje";
-	temp.appendChild(buttons);
 
 	buttons=document.createElement("button");
 	buttons.setAttribute("onclick","anuluj()");
@@ -278,11 +281,43 @@ function dodaj_stacje(){
 	xhttp.send();
 }
 
-function usun(){
+function zapisz(x){
+	var b95=document.getElementById("edit_95").value;
+	var b98=document.getElementById("edit_98").value;
+	var diesel=document.getElementById("edit_diesel").value;
+	var lpg=document.getElementById("edit_lpg").value;
+	var czas_od=document.getElementById("edit_czas_od").value;
+	var czas_do=document.getElementById("edit_czas_do").value;
+	var url;
+	var aktualizacja={
+		"id":x,
+		"priceFuel95":b95,
+		"priceFuel98":b98,
+		"priceFuelDiesel":diesel,
+		"priceFuelLpg":lpg,
+		"openingHours":czas_od+" - "+czas_do
+	};
 
-}
-function zapisz(){
+	if(test){
+		url = "http://localhost:8080/api/stations";
+	}
+	else{
+		url = "./api/stations";
+	}
 
+	var xhr = new XMLHttpRequest();
+	xhr.open("PATCH", url);
+
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.setRequestHeader("Content-Type", "application/json");
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4) {
+			clear_edit();
+			szukaj_stacji();
+		}
+	};
+	xhr.send(aktualizacja);
 }
 function anuluj(){
 	clear_edit();
