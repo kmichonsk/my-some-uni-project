@@ -214,14 +214,14 @@ function szukaj_stacji(){
 			if(dane[i].brand.name.toLowerCase()=="inna"){
 				console.log(dane[i].lat,dane[i].lat);
 				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(dane[i].long,dane[i].lat),
+					position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
 					map: map
 				});
 			}
 			else{
 				console.log(dane[i].lat,dane[i].lat);
 				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(dane[i].long,dane[i].lat),
+					position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
 					map: map,
 					icon: "loga/"+dane[i].brand.name.toLowerCase()+".png"
 				});
@@ -274,7 +274,7 @@ function dodaj_stacje(){
 			}
 	
     		xhttp_b.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp_b.send("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&priceFuel95="+b95+"&priceFuel98="+b98+"&priceFuelDiesel="+on+"&priceFuelLpg="+lpg+"&brandID="+siec+"&openingHours="+godziny+"&long="+long_c+"&lat="+lat_c);
+			xhttp_b.send("name="+nazwa+"&address="+ulica+"&city="+miasto+"&postalCode="+kod+"&priceFuel95="+b95+"&priceFuel98="+b98+"&priceFuelDiesel="+on+"&priceFuelLpg="+lpg+"&brandID="+siec+"&openingHours="+godziny+"&longitude="+long_c+"&latitude="+lat_c);
 		}
 	};
 	xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+adres+"&key=AIzaSyCZVFHwLmdrV2Uvgo3bOXYH8CwJ5CSB0Vw", true);
