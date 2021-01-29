@@ -85,3 +85,7 @@ input[type=text]{
 .godziny_stacji{
     padding-top: 5px;
 }
+
+.edit_image{
+    text-align: right;
+}
