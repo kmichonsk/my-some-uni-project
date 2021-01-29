@@ -66,7 +66,7 @@ public class AppController {
 
     @PatchMapping("/stations")
     public Long updateStation(
-            @RequestParam(required = false) Long id,
+            @RequestParam(required = true) Long id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String address,
             @RequestParam(required = false) String city,
