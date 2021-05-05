@@ -106,18 +106,20 @@ function edycja(x,id_stacji){
 function stacje(){
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+	if (this.readyState == 4 && this.status == 200) {
 		var dane= JSON.parse(this.response);
 		var select_field=document.getElementById("add_siec");
+		var select_search=document.getElementById("add_siec_search");
 		var i=0;
 		while(dane[i]){
 			var opcja=document.createElement("OPTION");
 			opcja.value = dane[i].id;
 			opcja.innerHTML = dane[i].name;
 			select_field.appendChild(opcja);
+			select_search.appendChild(opcja);
 			i++;
 		}
-    }
+	}
   };
   if(test){
 	xhttp.open("GET", "http://localhost:8080/api/brands", true);
@@ -157,76 +159,82 @@ function szukaj_stacji(){
 		var dane= JSON.parse(this.response);
 		var i=0;
 	    while(dane[i]){
-		    var stacja= document.createElement("DIV");
-		    stacja.className = "stacja";
-		    var nazwa= document.createElement("DIV");
-		    nazwa.className = "nazwa_stacji";
-		    nazwa.innerHTML = dane[i].name;
-		    stacja.appendChild(nazwa);
-		    var stacja_info=document.createElement("DIV");
-		    stacja_info.className="stacja_info";
-		    var adres=document.createElement("DIV");
-		    adres.className = "adres_stacji";
-		    adres.innerHTML=dane[i].address + " " + dane[i].city + " " + dane[i].postalCode;
-			stacja_info.appendChild(adres);
+
+			if(stacja==0 || stacja==dane[i].brand.id){
+
+		    	var stacja= document.createElement("DIV");
+		    	stacja.className = "stacja";
+		    	var nazwa= document.createElement("DIV");
+		    	nazwa.className = "nazwa_stacji";
+		    	nazwa.innerHTML = dane[i].name;
+		    	stacja.appendChild(nazwa);
+		    	var stacja_info=document.createElement("DIV");
+		    	stacja_info.className="stacja_info";
+		    	var adres=document.createElement("DIV");
+		    	adres.className = "adres_stacji";
+		    	adres.innerHTML=dane[i].address + " " + dane[i].city + " " + dane[i].postalCode;
+				stacja_info.appendChild(adres);
 			
 			
-			var temp=document.createElement("DIV");
-		    stacja.appendChild(stacja_info);
-		    var paliwa=document.createElement("DIV");
-		    paliwa.className="spacja_paliwa";
+				var temp=document.createElement("DIV");
+		    	stacja.appendChild(stacja_info);
+		    	var paliwa=document.createElement("DIV");
+		    	paliwa.className="spacja_paliwa";
 
-			var paliwo=document.createElement("DIV");
-			paliwo.innerHTML="Benzyna 95: <span>"+dane[i].priceFuel95 +"</span> zł";
-			paliwa.appendChild(paliwo);
+				var paliwo=document.createElement("DIV");
+				paliwo.innerHTML="Benzyna 95: <span>"+dane[i].priceFuel95 +"</span> zł";
+				paliwa.appendChild(paliwo);
 
-			paliwo=document.createElement("DIV");
-			paliwo.innerHTML="Benzyna 98: <span>"+dane[i].priceFuel98 +"</span> zł";
-			paliwa.appendChild(paliwo);
+				paliwo=document.createElement("DIV");
+				paliwo.innerHTML="Benzyna 98: <span>"+dane[i].priceFuel98 +"</span> zł";
+				paliwa.appendChild(paliwo);
 
-			paliwo=document.createElement("DIV");
-			paliwo.innerHTML="Diesel: <span>"+dane[i].priceFuelDiesel +"</span> zł";
-			paliwa.appendChild(paliwo);
+				paliwo=document.createElement("DIV");
+				paliwo.innerHTML="Diesel: <span>"+dane[i].priceFuelDiesel +"</span> zł";
+				paliwa.appendChild(paliwo);
 
-			paliwo=document.createElement("DIV");
-			paliwo.innerHTML="Lpg: <span>"+dane[i].priceFuelLpg +"</span> zł";
-			paliwa.appendChild(paliwo);
+				paliwo=document.createElement("DIV");
+				paliwo.innerHTML="Lpg: <span>"+dane[i].priceFuelLpg +"</span> zł";
+				paliwa.appendChild(paliwo);
 
-		    temp.appendChild(paliwa);
-		    var godziny=document.createElement("DIV");
-		    godziny.className = "godziny_stacji";
-		    godziny.innerHTML="otwarte: <span>"+dane[i].openingHours+"</span>";
-			temp.appendChild(godziny);
-			stacja_info.appendChild(temp);
-			var edit_block=document.createElement("DIV");
-			edit_block.style.display="none";
-			stacja.appendChild(edit_block);
-			edit_block.className="do_edycji";
-			var edit_image=document.createElement("DIV");
-			edit_image.className= "edit_image";
-			var sett_img=document.createElement("img");
-			sett_img.setAttribute("src","ustawienia.png");
-			sett_img.setAttribute("onclick", "edycja(this,'"+dane[i].id+"')");
-			edit_image.appendChild(sett_img);
-			stacja.appendChild(edit_image);
-			document.getElementById("results").appendChild(stacja);
+		    	temp.appendChild(paliwa);
+		    	var godziny=document.createElement("DIV");
+		    	godziny.className = "godziny_stacji";
+		    	godziny.innerHTML="otwarte: <span>"+dane[i].openingHours+"</span>";
+				temp.appendChild(godziny);
+				stacja_info.appendChild(temp);
+				var edit_block=document.createElement("DIV");
+				edit_block.style.display="none";
+				stacja.appendChild(edit_block);
+				edit_block.className="do_edycji";
+				var edit_image=document.createElement("DIV");
+				edit_image.className= "edit_image";
+				var sett_img=document.createElement("img");
+				sett_img.setAttribute("src","ustawienia.png");
+				sett_img.setAttribute("onclick", "edycja(this,'"+dane[i].id+"')");
+				edit_image.appendChild(sett_img);
+				stacja.appendChild(edit_image);
+				document.getElementById("results").appendChild(stacja);
 			
-			if(dane[i].brand.name.toLowerCase()=="inna"){
-				console.log(dane[i].lat,dane[i].lat);
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
-					map: map
-				});
+				if(dane[i].brand.name.toLowerCase()=="inna"){
+					console.log(dane[i].latitude,dane[i].longitude);
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(dane[i].longitude,dane[i].latitude),
+						map: map
+					});
+					markery.push(marker);
+				}
+				else{
+					console.log(dane[i].latitude,dane[i].longitude);
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(dane[i].longitude,dane[i].latitude),
+						map: map,
+						icon: "loga/"+dane[i].brand.name.toLowerCase()+".png"
+					});
+					markery.push(marker);
+				}
+				i++;
 			}
-			else{
-				console.log(dane[i].lat,dane[i].lat);
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
-					map: map,
-					icon: "loga/"+dane[i].brand.name.toLowerCase()+".png"
-				});
-			}
-		    i++;
 	    }
     }
 	};
