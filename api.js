@@ -115,8 +115,12 @@ function stacje(){
 			var opcja=document.createElement("OPTION");
 			opcja.value = dane[i].id;
 			opcja.innerHTML = dane[i].name;
-			select_field.appendChild(opcja);
 			select_search.appendChild(opcja);
+
+			opcja=document.createElement("OPTION");
+			opcja.value = dane[i].id;
+			opcja.innerHTML = dane[i].name;
+			select_field.appendChild(opcja);
 			i++;
 		}
 	}
