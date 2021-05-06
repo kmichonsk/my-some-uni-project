@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS brands (
     id long NOT NULL,
-    brand_name varchar(25) NOT NULL
+    name varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS stations (
