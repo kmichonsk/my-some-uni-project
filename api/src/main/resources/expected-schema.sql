@@ -18,3 +18,9 @@ CREATE TABLE IF NOT EXISTS stations (
 	latitude float DEFAULT NULL,
 	longitude float DEFAULT NULL
 ) DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `station_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
