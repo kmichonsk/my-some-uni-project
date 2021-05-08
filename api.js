@@ -258,7 +258,7 @@ function szukaj_stacji(){
 				if(dane[i].brand.id=="1"){
 
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(dane[i].longitude,dane[i].latitude),
+						position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
 						map: map
 					});
 					markery.push(marker);
@@ -266,7 +266,7 @@ function szukaj_stacji(){
 				else{
 					
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(dane[i].longitude,dane[i].latitude),
+						position: new google.maps.LatLng(dane[i].latitude,dane[i].longitude),
 						map: map,
 						icon: "loga/"+dane[i].brand.name.toLowerCase()+".png"
 					});
@@ -396,10 +396,10 @@ function najblizsza(){
 					var odp=JSON.parse(this.response);
 
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(odp[0].longitude,odp[0].latitude),
+						position: new google.maps.LatLng(odp[0].latitude,odp[0].longitude),
 						map: map,
 					});
-					map.setCenter(new google.maps.LatLng(odp[0].longitude,odp[0].latitude));
+					map.setCenter(new google.maps.LatLng(odp[0].latitude,odp[0].longitude));
 					map.setZoom(11);
 					markery.push(marker);
     			}
