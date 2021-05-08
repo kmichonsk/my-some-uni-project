@@ -29,6 +29,7 @@ public interface Mappers {
                 .openingHours(station.getOpeningHours())
                 .latitude(station.getLatitude())
                 .longitude(station.getLongitude())
+                .rating(station.getSumOfRating().doubleValue() / station.getRatingCount().doubleValue())
                 .build();
     }
 

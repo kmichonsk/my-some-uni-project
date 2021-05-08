@@ -1,6 +1,5 @@
 package com.app.sip.dto;
 
-import com.app.sip.model.Brand;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

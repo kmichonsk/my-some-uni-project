@@ -2,7 +2,9 @@ package com.app.sip.services;
 
 import com.app.sip.dto.*;
 import com.app.sip.mappers.Mappers;
+import com.app.sip.model.Comment;
 import com.app.sip.repositories.BrandsRepository;
+import com.app.sip.repositories.CommentsRepository;
 import com.app.sip.repositories.StationsRepository;
 import com.app.sip.validator.CreateStationValidator;
 import com.app.sip.validator.UpdateStationValidator;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 public class AppService {
     private final BrandsRepository brandsRepository;
     private final StationsRepository stationsRepository;
+    private final CommentsRepository commentsRepository;
 
     public Long addStation(CreateStationDto createStationDto) {
         Objects.requireNonNull(createStationDto, "AppService: addStation: createStationDto is null");
@@ -134,5 +137,34 @@ public class AppService {
                 .limit(10)
                 .map(Mappers::fromStationToGetStationDto)
                 .collect(Collectors.toList());
+    }
+
+    public Long addStationComment(Long stationId, String comment) {
+        stationsRepository.findById(stationId).orElseThrow(() -> {
+            throw new RuntimeException("AppService: addStationComment: no station with id: " + stationId);
+        });
+        return commentsRepository.save(Comment.builder().comment(comment).stationId(stationId).build()).getId();
+    }
+
+    public List<GetCommentDto> getStationComments(Long stationId) {
+        stationsRepository.findById(stationId).orElseThrow(() -> {
+            throw new RuntimeException("AppService: getStationComments: no station with id: " + stationId);
+        });
+        return commentsRepository.findAllByStationId(stationId).stream()
+                .map(comment -> new GetCommentDto(comment.getComment()))
+                .collect(Collectors.toList());
+    }
+
+    public Long addStationRating(Long stationId, Integer rating) {
+        if (rating < 1 || rating > 5) {
+            throw new RuntimeException("AppService: addStationRating: bad station rating: " + rating);
+        }
+        var station = stationsRepository.findById(stationId).orElseThrow(() -> {
+            throw new RuntimeException("AppService: addStationRating: no station with id: " + stationId);
+        });
+
+        station.setRatingCount(station.getRatingCount() +1);
+        station.setSumOfRating(station.getSumOfRating() + rating);
+        return stationsRepository.save(station).getId();
     }
 }

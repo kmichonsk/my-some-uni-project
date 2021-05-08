@@ -64,6 +64,23 @@ public class AppController {
                         .build());
     }
 
+    @PostMapping("/stations/{stationId}/comments")
+    public Long addStationComment(@PathVariable(required = true) Long stationId,
+                           @RequestParam(required = true) String comment) {
+        return appService.addStationComment(stationId, comment);
+    }
+
+    @GetMapping("/stations/{stationId}/comments")
+    public List<GetCommentDto> getStationComments(@PathVariable(required = true) Long stationId) {
+        return appService.getStationComments(stationId);
+    }
+
+    @PostMapping("/stations/{stationId}/rating")
+    public Long addStationRating(@PathVariable(required = true) Long stationId,
+                                  @RequestParam(required = true) Integer rating) {
+        return appService.addStationRating(stationId, rating);
+    }
+
     @PatchMapping("/stations")
     public Long updateStation(
             @RequestParam(required = true) Long id,

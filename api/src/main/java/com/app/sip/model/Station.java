@@ -1,6 +1,9 @@
 package com.app.sip.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -29,4 +32,7 @@ public class Station {
 
     private Double latitude;
     private Double longitude;
+
+    private Integer sumOfRating;
+    private Integer ratingCount;
 }

@@ -24,5 +24,5 @@ CREATE TABLE IF NOT EXISTS stations (
 CREATE TABLE IF NOT EXISTS comments (
   id int(11) NOT NULL,
   comment varchar(255) NOT NULL,
-  station_id int(11) NOT NULL
+  station_id long NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

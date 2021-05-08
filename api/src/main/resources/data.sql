@@ -334,7 +334,7 @@ INSERT INTO `stations` (`id`, `name`, `address`, `city`, `postal_code`, `price_f
 (325, 'AMIC POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', 'SŁOWACKIEGO 134', 'GDAŃSK', '80-298', 4.51, 4.93, 4.58, 0, 1, '', 54.3759, 18.5209, 16, 10),
 (326, 'POLSKI KONCERN NAFTOWY ORLEN SPÓŁKA AKCYJNA (STACJA NR 4003)', 'GRUNWALDZKA 341', 'GDAŃSK', '80-309', 4.65, 5.04, 4.58, 2.12, 2, '', 54.3966, 18.5789, 92, 22),
 (327, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'POŁĘŻE 19A', 'GDAŃSK', '80-720', 0, 0, 4.58, 2.15, 3, '', 54.3428, 18.6937, 99, 22),
-(328, 'SHELL POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (STACJA NR 2035)', 'JANA PAŁUBICKIEGO 12', 'GDAŃSK', '80-175', 4.7, 4.93, 4.63, 2.1, 5, '', 54.3398, 18.5537, 65, 16);
+(328, 'SHELL POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (STACJA NR 2035)', 'JANA PAŁUBICKIEGO 12', 'GDAŃSK', '80-175', 4.7, 4.93, 4.63, 2.1, 5, '', 54.3398, 18.5537, 65, 16),
 (329, 'SHELL POLSKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (STACJA NR 2036)', 'MARYNARKI POLSKIEJ 98A', 'GDAŃSK', '80-557', 4.65, 4.99, 4.78, 2.31, 5, '', 54.3847, 18.6413, 24, 12),
 (330, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'LUBCZYKOWA 2', 'GDAŃSK', '80-177', 4.56, 4.67, 4.68, 2.08, 3, '', 54.3505, 18.512, 27, 14),
 (331, 'LOTOS PALIWA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', 'NA STĘPCE 6 (PŁYWAJĄCA)', 'GDAŃSK', '80-760', 4.8, 4.77, 4.78, 2.26, 4, '', 54.354, 18.6658, 39, 15),
@@ -657,7 +657,7 @@ INSERT INTO `stations` (`id`, `name`, `address`, `city`, `postal_code`, `price_f
 (648, 'POLSKI KONCERN NAFTOWY ORLEN SPÓŁKA AKCYJNA NR 1035', 'STARGARDZKA 22', 'DOBRZANY', '73-130', 4.7, 5.04, 4.73, 2.03, 2, '', 51.1325, 16.9488, 83, 19),
 (649, '\"STACJA PALIW\" BEDNARSKA HELENA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOSCIĄ', 'KOLEJOWA 25', 'DOLICE', '73-115', 4.8, 4.72, 4.83, 2.12, 1, '', 50.0268, 19.9865, 25, 6),
 (650, 'EWA ZBIGNIEW SŁUGOCCY', 'KOBYLANKA', 'KOBYLANKA', '73-110', 4.46, 0, 4.63, 2.03, 1, '', 53.3448, 14.8719, 61, 16),
-(651, '\"EURO\" KIELA SPÓŁKA JAWNA (FR. ORLEN)', 'KRĄPIEL 55', 'KRĄPIEL', '73-131', 4.56, 5.09, 4.68, 0, 2, '', 53.2916, 15.2365, 164, 34);
+(651, '\"EURO\" KIELA SPÓŁKA JAWNA (FR. ORLEN)', 'KRĄPIEL 55', 'KRĄPIEL', '73-131', 4.56, 5.09, 4.68, 0, 2, '', 53.2916, 15.2365, 164, 34),
 (652, 'BP EUROPA SE SPÓŁKA EUROPEJSKA ODDZIAŁ W POLSCE', 'STARGARDZKA 1', 'LIPNIK', '73-100', 4.6, 4.93, 0, 2.15, 3, '', 51.1304, 16.9534, 26, 13),
 (653, 'POLSKI KONCERN NAFTOWY ORLEN SPÓŁKA AKCYJNA (STACJA NR 975)', 'SZCZECIŃSKA 25', 'MORZYCZYN', '73-108', 4.56, 4.67, 0, 2.31, 2, '', 53.4715, 14.5437, 74, 22),
 (654, 'PRZEDSIĘBIORSTWO HANDLOWO-USŁUGOWE OAZA SP. Z O.O. (PART. BP)', 'MOTANIEC 26', 'MOTANIEC', '73-108', 4.51, 0, 4.88, 2.31, 3, '', 53.3477, 14.8403, 114, 28),
@@ -1715,8 +1715,7 @@ INSERT INTO `comments` (`id`, `comment`, `station_id`) VALUES
 (875, 'Woźny sam głosem swoim przed laty wywołał,', 333),
 (876, 'Albo o których później dowiedzieć się zdołał.', 499),
 (877, 'Prostym ludziom wokanda zda się imion spisem;', 444),
-(878, 'Woźnemu jest obrazów wspaniałych zarysem.', 460);
-INSERT INTO `comments` (`id`, `comment`, `station_id`) VALUES
+(878, 'Woźnemu jest obrazów wspaniałych zarysem.', 460),
 (879, 'Czytał więc i rozmyślał: Ogiński z Wizgirdem,', 608),
 (880, 'Dominikanie z Rymszą, Rymsza z Wysogirdem,', 602),
 (881, 'Radziwił z Wereszczaką, Giedroić z Rdułtowskim,', 114),
