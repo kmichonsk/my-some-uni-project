@@ -1,6 +1,7 @@
 var test=false;
 var markery=[];
 
+
 function clear_edit(){
 	var x = document.getElementsByClassName("do_edycji");
 	for(i=0;x[i];i++){
@@ -174,7 +175,7 @@ function szukaj_stacji(){
 	    while(dane[i]){
 			console.log(siec_stacji=="0", siec_stacji==dane[i].brand.id, i);
 			if(siec_stacji=="0" || siec_stacji==dane[i].brand.id){
-				console.log(i);
+				
 
 		    	var stacja= document.createElement("DIV");
 				stacja.className = "stacja";
@@ -236,6 +237,18 @@ function szukaj_stacji(){
 				edit_block.className="do_edycji";
 				var edit_image=document.createElement("DIV");
 				edit_image.className= "stacja_adds";
+
+				var gwiazdki = document.createElement("DIV");
+				for(j=0;j<5;j++){
+					var g=document.createElement("img");
+					g.setAttribute("src","szara_gwiazdka.png");
+					g.setAttribute("onclick", "ocen('"+(j+1)+"')");
+					g.setAttribute("onmouseout", "normalne_gwiazdki(this)");
+					g.setAttribute("onmouseover", "podswietlone_gwiazdki(this,'"+(j+1)+"')");
+					gwiazdki.appendChild(g);
+				}
+				edit_image.appendChild(gwiazdki);
+
 				var sett_img=document.createElement("img");
 				sett_img.setAttribute("src","notatka.png");
 				sett_img.setAttribute("onclick", "show_opinion('"+dane[i].name+"','"+dane[i].id+"')");
@@ -421,4 +434,23 @@ function show_opinion(nazwa, id){
 }
 function close_opinion(){
 	document.getElementById("opinion").style.display = "none";
+}
+
+function ocen(x){
+	
+}
+
+function normalne_gwiazdki(t){
+	var g = t.parentElement.children;
+	for(i=0;i<5;i++){
+		g[i].setAttribute("src","szara_gwiazdka.png");
+	}
+	
+}
+
+function podswietlone_gwiazdki(t,x){
+	var g = t.parentElement.children;
+	for(i=0;i<x;i++) {
+		g[i].setAttribute("src","gwiazdka.png");
+	}
 }
