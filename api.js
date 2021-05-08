@@ -237,7 +237,7 @@ function szukaj_stacji(){
 				for(j=0;j<5;j++){
 					var g=document.createElement("img");
 					g.setAttribute("src","szara_gwiazdka.png");
-					g.setAttribute("onclick", "ocen('"+i+"','"+(j+1)+"')");
+					g.setAttribute("onclick", "ocen('"+dane[i].id+"','"+(j+1)+"')");
 					g.setAttribute("onmouseout", "normalne_gwiazdki(this)");
 					g.setAttribute("onmouseover", "podswietlone_gwiazdki(this,'"+(j+1)+"')");
 					gwiazdki.appendChild(g);
