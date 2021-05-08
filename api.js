@@ -175,12 +175,26 @@ function szukaj_stacji(){
 			console.log(siec_stacji=="0", siec_stacji==dane[i].brand.id, i);
 			if(siec_stacji=="0" || siec_stacji==dane[i].brand.id){
 				console.log(i);
+
 		    	var stacja= document.createElement("DIV");
-		    	stacja.className = "stacja";
+				stacja.className = "stacja";
+				var tmp=document.createElement("DIV");
 		    	var nazwa= document.createElement("DIV");
 		    	nazwa.className = "nazwa_stacji";
-		    	nazwa.innerHTML = dane[i].name;
-		    	stacja.appendChild(nazwa);
+				nazwa.innerHTML = dane[i].name;
+				tmp.appendChild(nazwa);
+				var ocena= document.createElement("DIV");
+				var gwiazdka = document.createElement("img");
+				gwiazdka.setAttribute("src","gwiazdka.png");
+				ocena.appendChild(gwiazdka);
+				var ocenka=0;
+				if(dane[i].sum_of_rating!=0){
+					var ocenka=parseFloat((dane[i].sum_of_rating*100)/dane[i].rating_count)/100.0;
+				}
+				ocena.innerHTML += "<div>"+ocenka.toFixed(2).toString()+"</div>";
+				tmp.appendChild(ocena);
+				stacja.appendChild(tmp);
+				
 		    	var stacja_info=document.createElement("DIV");
 		    	stacja_info.className="stacja_info";
 		    	var adres=document.createElement("DIV");
@@ -195,19 +209,19 @@ function szukaj_stacji(){
 		    	paliwa.className="spacja_paliwa";
 
 				var paliwo=document.createElement("DIV");
-				paliwo.innerHTML="Benzyna 95: <span>"+dane[i].hasFuel95 +"</span> zł";
+				paliwo.innerHTML="Benzyna 95: <span>"+dane[i].priceFuel95 +"</span> zł";
 				paliwa.appendChild(paliwo);
 
 				paliwo=document.createElement("DIV");
-				paliwo.innerHTML="Benzyna 98: <span>"+dane[i].hasFuel98 +"</span> zł";
+				paliwo.innerHTML="Benzyna 98: <span>"+dane[i].priceFuel98 +"</span> zł";
 				paliwa.appendChild(paliwo);
 
 				paliwo=document.createElement("DIV");
-				paliwo.innerHTML="Diesel: <span>"+dane[i].hasFuelDiesel +"</span> zł";
+				paliwo.innerHTML="Diesel: <span>"+dane[i].priceFuelDiesel +"</span> zł";
 				paliwa.appendChild(paliwo);
 
 				paliwo=document.createElement("DIV");
-				paliwo.innerHTML="Lpg: <span>"+dane[i].hasFuelLpg +"</span> zł";
+				paliwo.innerHTML="Lpg: <span>"+dane[i].priceFuelLpg +"</span> zł";
 				paliwa.appendChild(paliwo);
 
 		    	temp.appendChild(paliwa);
@@ -221,13 +235,20 @@ function szukaj_stacji(){
 				stacja.appendChild(edit_block);
 				edit_block.className="do_edycji";
 				var edit_image=document.createElement("DIV");
-				edit_image.className= "edit_image";
+				edit_image.className= "stacja_adds";
+				var sett_img=document.createElement("img");
+				sett_img.setAttribute("src","notatka.png");
+				sett_img.setAttribute("onclick", "show_opinion('"+dane[i].name+"','"+dane[i].id+"')");
+				edit_image.appendChild(sett_img);
 				var sett_img=document.createElement("img");
 				sett_img.setAttribute("src","ustawienia.png");
 				sett_img.setAttribute("onclick", "edycja(this,'"+dane[i].id+"')");
 				edit_image.appendChild(sett_img);
 				stacja.appendChild(edit_image);
 				document.getElementById("results").appendChild(stacja);
+
+				//`sum_of_rating`, `rating_count`
+
 				console.log(dane[i].latitude,dane[i].longitude);
 				if(dane[i].brand.id=="1"){
 
@@ -392,4 +413,12 @@ function najblizsza(){
 	  } else {
 		handleLocationError(false, infoWindow, map.getCenter());
 	  }
+}
+
+function show_opinion(nazwa, id){
+	document.getElementById("opt_name").innerHTML =nazwa;
+	document.getElementById("opinion").style.display = "block";
+}
+function close_opinion(){
+	document.getElementById("opinion").style.display = "none";
 }

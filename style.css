@@ -61,7 +61,9 @@ input[type=text]{
 #add_siec{
     float:right;
 }
-
+#add_siec_search{
+    float:right;
+}
 #results{
     font-size: 17px;
     color:#3a3a3a;
@@ -70,8 +72,23 @@ input[type=text]{
     padding: 10px;
     border-bottom:solid 2px #dddddd;
 }
+.stacja > div:nth-child(1){
+    display: grid;
+    grid-template-columns: auto 55px;
+}
+.stacja > div:nth-child(1) > div:nth-child(2){
+    display: grid;
+    grid-template-columns: 23px auto;
+}
+.stacja > div:nth-child(1) > div:nth-child(2) > div{
+    margin-top: 2px;
+}
+.stacja > div> div:nth-child(2) > img{
+    height: 22px;
+}
 .nazwa_stacji{
     font-weight:600;
+    width: calc( 100% - 50px);
 }
 .stacja_info{
     padding-top:5px;
@@ -86,6 +103,72 @@ input[type=text]{
     padding-top: 5px;
 }
 
-.edit_image{
+.stacja_adds{
     text-align: right;
+}
+.stacja_adds > img{
+    height: 25px;
+    margin-right: 5px;
+}
+
+
+#opinion{
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width:100%;
+    height: 100%;
+    z-index: 9999;
+}
+#opinion > div {
+    width:600px;
+    min-height: 400px;
+    background-color: white;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:100px;
+    color: #3a3a3a;
+    font-family: 'Ubuntu', sans-serif;
+}
+#opinion > div >section:nth-child(1), #opinion > div >section:nth-child(2), #opinion > div >section:nth-child(3) {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 90%;
+    margin-left: 5%;
+}
+#opinion > div >section:nth-child(1) > div:nth-child(2) {
+    float:right;
+}
+#opinion > div >section:nth-child(1) > div:nth-child(1) {
+    padding: 5px;
+    font-size: 18px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+#opinion > div >section:nth-child(1){
+    height: 50px;
+}
+#opinion > div >section:nth-child(2){
+    height: 240px;
+}
+#opinion > div >section:nth-child(3) > span{
+    font-size: 12px;
+}
+#opinion > div >section:nth-child(3){
+    height: 110px;
+}
+#opinion > div >section:nth-child(3) > form > textarea{
+    font-family: 'Ubuntu', sans-serif;
+    resize: none;
+    width:100%;
+    font-size: 14px;
+}
+#opinion > div >section:nth-child(3) > form{
+    text-align: center;
+}
+#opinie{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 }

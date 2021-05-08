@@ -49,6 +49,28 @@
 </script>
 </head>
 <body>
+	<div id="opinion">
+        <div>
+            <section>
+                <div id="opt_name"></div>
+                <div>
+                    <img src="esc.png" width="20px" height="20px" onclick="close_opinion()"/>
+                </div>
+            </section>
+            <section>
+                <div id="opinie"></div>
+            </section>
+            <section>
+                <span>
+                    Dodaj komentarz
+				</span>
+                <form>
+                    <textarea id="add_komentarz"></textarea>
+                </form>
+                <button>Dodaj</button>
+            </section>
+        </div>
+    </div>
 <main id="main">
 <div id="form">
 <div class="formularz"><button onclick="najblizsza()"> Najbliższa stacja</button> </div>
@@ -101,7 +123,6 @@
 	</div>
 </div>
 <div id="results">
-	
 </div>
 </div>
 <div id='google_map'></div>
