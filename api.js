@@ -173,7 +173,6 @@ function szukaj_stacji(){
 		var i=0;
 		var siec_stacji = document.getElementById("add_siec_search").value;
 	    while(dane[i]){
-			console.log(siec_stacji=="0", siec_stacji==dane[i].brand.id, i);
 			if(siec_stacji=="0" || siec_stacji==dane[i].brand.id){
 				
 
@@ -188,11 +187,7 @@ function szukaj_stacji(){
 				var gwiazdka = document.createElement("img");
 				gwiazdka.setAttribute("src","gwiazdka.png");
 				ocena.appendChild(gwiazdka);
-				var ocenka=0;
-				if(dane[i].sum_of_rating!=0){
-					var ocenka=parseFloat((dane[i].sum_of_rating*100)/dane[i].rating_count)/100.0;
-				}
-				ocena.innerHTML += "<div>"+ocenka.toFixed(2).toString()+"</div>";
+				ocena.innerHTML += "<div>"+dane[i].rating.toFixed(2).toString()+"</div>";
 				tmp.appendChild(ocena);
 				stacja.appendChild(tmp);
 				
@@ -242,7 +237,7 @@ function szukaj_stacji(){
 				for(j=0;j<5;j++){
 					var g=document.createElement("img");
 					g.setAttribute("src","szara_gwiazdka.png");
-					g.setAttribute("onclick", "ocen('"+(j+1)+"')");
+					g.setAttribute("onclick", "ocen('"+i+"','"+(j+1)+"')");
 					g.setAttribute("onmouseout", "normalne_gwiazdki(this)");
 					g.setAttribute("onmouseover", "podswietlone_gwiazdki(this,'"+(j+1)+"')");
 					gwiazdki.appendChild(g);
@@ -260,9 +255,6 @@ function szukaj_stacji(){
 				stacja.appendChild(edit_image);
 				document.getElementById("results").appendChild(stacja);
 
-				//`sum_of_rating`, `rating_count`
-
-				console.log(dane[i].latitude,dane[i].longitude);
 				if(dane[i].brand.id=="1"){
 
 					var marker = new google.maps.Marker({
@@ -431,13 +423,29 @@ function najblizsza(){
 function show_opinion(nazwa, id){
 	document.getElementById("opt_name").innerHTML =nazwa;
 	document.getElementById("opinion").style.display = "block";
+	document.getElementById("add_komentarz_button").setAttribute("onclick","dodaj_komentarz('"+id+"')");
 }
 function close_opinion(){
 	document.getElementById("opinion").style.display = "none";
 }
 
-function ocen(x){
+function ocen(x, ocena){
+	var xhttp_b = new XMLHttpRequest();
+    xhttp_b.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+		
+		}
+	};
 	
+	if(test){
+		xhttp_b.open("POST", "http://localhost:8080/api/stations/"+x+"/rating", true);
+	}
+	else{
+		xhttp_b.open("POST", "./api/stations/"+x+"/rating", true);
+	}
+
+	xhttp_b.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp_b.send("rating="+ocena);
 }
 
 function normalne_gwiazdki(t){
@@ -445,7 +453,6 @@ function normalne_gwiazdki(t){
 	for(i=0;i<5;i++){
 		g[i].setAttribute("src","szara_gwiazdka.png");
 	}
-	
 }
 
 function podswietlone_gwiazdki(t,x){
@@ -453,4 +460,24 @@ function podswietlone_gwiazdki(t,x){
 	for(i=0;i<x;i++) {
 		g[i].setAttribute("src","gwiazdka.png");
 	}
+}
+
+function dodaj_komentarz(id){
+	var comment=document.getElementById("add_komentarz").value;
+	var xhttp_b = new XMLHttpRequest();
+    xhttp_b.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+		
+		}
+	};
+	
+	if(test){
+		xhttp_b.open("POST", "http://localhost:8080/api/stations/"+id+"/comments", true);
+	}
+	else{
+		xhttp_b.open("POST", "./api/stations/"+id+"/comments", true);
+	}
+
+	xhttp_b.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp_b.send("comment="+comment);
 }
