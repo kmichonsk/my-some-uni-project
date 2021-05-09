@@ -420,10 +420,35 @@ function najblizsza(){
 	  }
 }
 
+function komentarze(id){
+	var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    	if (this.readyState == 4 && this.status == 200) {
+			var dane=JSON.parse(this.response);
+			console.log(dane);
+			var i=0;
+			var opinie = document.getElementById("opinie");
+			opinie.innerHTML = "";
+			while(dane[i]){
+				opinie.innerHTML += "<p>"+dane[i].comment+"</p>";
+				i++;
+			}
+		}
+	};
+	if(test){
+		xhttp.open("GET", "http://localhost:8080//api/stations/"+id+"/comments", true);
+	}
+	else{
+		xhttp.open("GET", "./api/stations/"+id+"/comments", true);
+	}
+	xhttp.send();
+}
+
 function show_opinion(nazwa, id){
 	document.getElementById("opt_name").innerHTML =nazwa;
 	document.getElementById("opinion").style.display = "block";
 	document.getElementById("add_komentarz_button").setAttribute("onclick","dodaj_komentarz('"+id+"')");
+	komentarze(id);
 }
 function close_opinion(){
 	document.getElementById("opinion").style.display = "none";
@@ -481,3 +506,4 @@ function dodaj_komentarz(id){
 	xhttp_b.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp_b.send("comment="+comment);
 }
+
