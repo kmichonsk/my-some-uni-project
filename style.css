@@ -64,6 +64,9 @@ input[type=text]{
 #add_siec_search{
     float:right;
 }
+#ocena_search{
+    float:right;
+}
 #results{
     font-size: 17px;
     color:#3a3a3a;

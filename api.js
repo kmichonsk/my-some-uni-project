@@ -166,6 +166,7 @@ function szukaj_stacji(){
     var b95=document.getElementsByName("95")[1].checked;
     var b98=document.getElementsByName("98")[1].checked;
     var lpg=document.getElementsByName("lpg")[1].checked;
+    let minRating = document.getElementById("ocena_search").value;
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -173,6 +174,14 @@ function szukaj_stacji(){
 		var i=0;
 		var siec_stacji = document.getElementById("add_siec_search").value;
 	    while(dane[i]){
+      console.log("rating: " + dane[i].rating);
+
+      if (dane[i].rating < minRating) {
+        ++i;
+        continue;
+      }
+
+      console.log("wziąłem stację z rating: " + dane[i].rating);
 			if(siec_stacji=="0" || siec_stacji==dane[i].brand.id){
 				
 
