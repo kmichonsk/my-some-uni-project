@@ -61,10 +61,7 @@ input[type=text]{
 #add_siec{
     float:right;
 }
-#add_siec_search{
-    float:right;
-}
-#ocena_search{
+#add_siec_search, #ocena_search{
     float:right;
 }
 #results{

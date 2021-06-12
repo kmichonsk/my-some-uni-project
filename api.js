@@ -191,6 +191,9 @@ function szukaj_stacji(){
 		    	var nazwa= document.createElement("DIV");
 		    	nazwa.className = "nazwa_stacji";
 				nazwa.innerHTML = dane[i].name;
+				if(dane[i].brand.id!=1){
+					nazwa.innerHTML = "<img src='loga/"+dane[i].brand.name.toLowerCase()+".png' style='width:20px;height:20px;padding-top:3px;'> "+dane[i].name;
+				}
 				tmp.appendChild(nazwa);
 				var ocena= document.createElement("DIV");
 				var gwiazdka = document.createElement("img");
@@ -253,6 +256,10 @@ function szukaj_stacji(){
 				}
 				edit_image.appendChild(gwiazdki);
 
+				var sett_img=document.createElement("img");
+				sett_img.setAttribute("src","mapa.png");
+				sett_img.setAttribute("onclick", "pokaz_trase('"+dane[i].latitude+"','"+dane[i].longitude+"')");
+				edit_image.appendChild(sett_img);
 				var sett_img=document.createElement("img");
 				sett_img.setAttribute("src","notatka.png");
 				sett_img.setAttribute("onclick", "show_opinion('"+dane[i].name+"','"+dane[i].id+"')");
@@ -516,3 +523,6 @@ function dodaj_komentarz(id){
 	xhttp_b.send("comment="+comment);
 }
 
+function pokaz_trase(x,y){
+	window.open("./trasa.html?longitude="+y+"&latitude="+x,"","width=600,height=400");
+}
